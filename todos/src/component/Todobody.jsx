@@ -1,13 +1,16 @@
 import Todolist from "./Todolist";
 import Todoinput from "./Todoinput";
+import styled from "styled-components";
 
 function Todobody() {
     return (
-        <div>
+        <Todobodybox>
             <Todolist />
             <Todoinput />
-        </div>
+        </Todobodybox>
     );
 }
+
+const Todobodybox = styled.div``;
 
 export default Todobody;

@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useTodoDispatch } from "../context/todos";
 import { useInputs } from "../hook/useInput";
 import { BsArrowReturnLeft } from "react-icons/bs";
+import styled from "styled-components";
 
 function Todoinput() {
     const [inputs, onChange, onReset] = useInputs({
@@ -20,11 +21,20 @@ function Todoinput() {
         nextId.current++;
     };
     return (
-        <div>
+        <Inputbox>
             <input type="text" onChange={onChange} name="text" value={text} />
-            <BsArrowReturnLeft onClick={onSubmit} />
-        </div>
+            <Submitbox onClick={onSubmit} />
+        </Inputbox>
     );
 }
+
+const Inputbox = styled.div``;
+
+const Submitbox = styled(BsArrowReturnLeft)`
+    cursor: pointer;
+    &:hover {
+        background-color: lightgray;
+    }
+`;
 
 export default Todoinput;

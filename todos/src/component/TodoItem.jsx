@@ -1,6 +1,7 @@
 import { useTodoDispatch } from "../context/todos";
 import { BsTrash } from "react-icons/bs";
 import styled, { css } from "styled-components";
+import { AiOutlineCheckCircle, AiFillCheckCircle } from "react-icons/ai";
 
 function TodoItem({ todo }) {
     const { id, text, done } = todo;
@@ -16,13 +17,21 @@ function TodoItem({ todo }) {
     };
     return (
         <div>
-            <Textbox onClick={onToggle} done={done}>
-                {text}
-            </Textbox>
-            <BsTrash onClick={onRemove} />
+            <Checkbox onClick={onToggle}>
+                {done ? <AiFillCheckCircle /> : <AiOutlineCheckCircle />}
+            </Checkbox>
+            <Textbox done={done}>{text}</Textbox>
+            <Trashbox onClick={onRemove} />
         </div>
     );
 }
+
+const Checkbox = styled.span`
+    cursor: pointer;
+    &:hover {
+        background-color: lightgray;
+    }
+`;
 
 const Textbox = styled.span`
     ${({ done }) =>
@@ -30,6 +39,13 @@ const Textbox = styled.span`
         css`
             text-decoration: line-through;
         `}
+`;
+
+const Trashbox = styled(BsTrash)`
+    cursor: pointer;
+    &:hover {
+        background-color: lightgray;
+    }
 `;
 
 export default TodoItem;
